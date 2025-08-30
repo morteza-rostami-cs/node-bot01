@@ -1,10 +1,11 @@
 import { Router } from 'express';
-import { authController } from './index.js';
-import { validateBody } from '@/middleware/validate.js';
-import { registerSchema, loginSchema, tokensSchema } from './schema';
+import { validateBody } from '@/middleware/validate.middleware.js';
+import { registerSchema, loginSchema, tokensSchema } from '@/application/user/dtos/user.dto.js';
 
-// authMiddleware
-import { authMiddleware } from './index.js'; // this is a object
+// authMiddleware, and authController
+import { container } from '@/container.js';
+const { authMiddleware, authController } = container.user;
+
 // middleware method
 const { authGuard } = authMiddleware;
 

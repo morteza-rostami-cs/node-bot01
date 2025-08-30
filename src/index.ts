@@ -5,7 +5,7 @@ import express from 'express';
 import type { Request, Response } from 'express';
 import cors from 'cors';
 // import Stats from "@/core/value-objects/Stats.js";
-import mongoEngine from '@/infra/database/mango.js';
+import mongoEngine from '@/infra/mongodb/mongo.js';
 import { spawn } from 'node:child_process';
 import path from 'node:path';
 import { redisClient } from '@/infra/redis/index.js';
@@ -15,19 +15,19 @@ import expressListRoutes from 'express-list-routes';
 // import expressListEndpoints from 'express-list-endpoints';
 
 // middleware
-import { errorHandler } from './middleware/errorHandler';
+import { errorHandler } from './middleware/errorHandler.middleware';
 import { AppError } from './shared/errors/AppError';
-import { validateBody } from './middleware/validate';
-import { responseMiddleware } from './middleware/response.mid.js';
+import { validateBody } from './middleware/validate.middleware';
+import { responseMiddleware } from './middleware/response.middleware.js';
 
 // routes
-import userRoutes from '@/modules/user/route.js';
+import userRoutes from '@/application/user/user.routes.js';
 
 import z from 'zod';
-import { comparePassword, hashPassword } from './shared/utils/password';
+// import { comparePassword, hashPassword } from './shared/';
 
 // swagger
-import { swaggerService } from './infra/swagger/SwaggerService';
+import { swaggerService } from './docs/swagger.service';
 import cookieParser from 'cookie-parser';
 
 // console.log(config.nodeEnv);

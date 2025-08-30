@@ -38,6 +38,7 @@ export const responseMiddleware = (req: Request, res: Response, next: NextFuncti
   }) {
     return this.status(statusCode).json({ success: true, data, message });
   };
+
   res.sendError = function ({
     error,
     statusCode = 400,

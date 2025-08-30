@@ -343,6 +343,81 @@ Do you want to start Task 1 now?
 
 ---
 
+#==========================
+
+Perfect 🚀 — that’s the right mindset. Let’s decompose **Phase 4 – Bot & External APIs** into smaller actionable tasks with a good order of execution.
+
+---
+
+## 🔹 **Phase 4 Breakdown**
+
+### **Task 1 – Telegram Bot Setup**
+
+- Choose library (`grammY` is modern & typed; `node-telegram-bot-api` is stable but older).
+- Install dependency.
+- Create `src/modules/bot/telegram.bot.ts`.
+- Initialize bot with token from `.env`.
+- Add basic error handling & logging.
+
+---
+
+### **Task 2 – Commands Scaffold**
+
+- Register `/start` command (send welcome message).
+- Register `/help` command (list available features).
+- Keep commands modular (e.g., inside `src/modules/bot/commands`).
+- Ensure commands can later call into application services (via container).
+
+---
+
+### **Task 3 – Auth Link Flow (Bot ↔ Backend User)**
+
+- Create a "login via Telegram" flow:
+  - Bot generates a unique link/token → points to your backend.
+  - Backend verifies and binds Telegram userId ↔ app UserId.
+
+- Store mapping in Redis or DB.
+- Once linked, bot can authenticate user commands.
+
+---
+
+### **Task 4 – Webhook Integration for Production**
+
+- Switch from long-polling (dev) → webhook (prod).
+- Configure Telegram to send updates to `https://yourdomain.com/api/telegram/webhook`.
+- Secure webhook (secret token validation).
+- Integrate with Express router: `src/modules/bot/telegram.route.ts`.
+
+---
+
+### **Task 5 – External API Client Wrapper**
+
+- Create a reusable Axios wrapper:
+  - Base config (timeout, headers).
+  - Interceptors:
+    - Retry on network failures.
+    - Logging (request & response).
+    - Error normalization.
+
+- Place in `src/infra/http/axiosClient.ts`.
+- Can be reused by OpenAI, LangChain, Telegram APIs, etc.
+
+---
+
+✅ Recommended Order:
+
+1. **Task 1** – Get the bot running (polling).
+2. **Task 2** – Add commands.
+3. **Task 5** – Build API client wrapper (you’ll need it soon).
+4. **Task 3** – Auth link flow (ties bot ↔ users).
+5. **Task 4** – Switch to webhook for production.
+
+---
+
+Do you want me to start with **Task 1 – Telegram Bot Setup** and write a clean OOP/SOLID structure for it inside your existing architecture?
+
+#=======================
+
 ## **Phase 5 – AI & LangChain Integration**
 
 **Goal:** Add intelligence capabilities.

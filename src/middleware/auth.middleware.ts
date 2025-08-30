@@ -1,6 +1,6 @@
 import type { User } from '@/domain/entities/User.js';
 import type { IUserRepository } from '@/domain/repositories/IUserRepository.js';
-import type { TokenPayload, TokenPort } from '@/modules/user/ports/TokenPort.js';
+import type { TokenPayload, TokenPort } from '@/application/user/ports/ITokenPort.js';
 import { AppError } from '@/shared/errors/AppError.js';
 import type { NextFunction, Request, Response } from 'express';
 

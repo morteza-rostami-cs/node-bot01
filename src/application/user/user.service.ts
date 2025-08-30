@@ -1,7 +1,7 @@
-import type { HashingPort } from './ports/HashingPort';
-import type { TokenPort } from './ports/TokenPort';
+import type { HashingPort } from './ports/IHashingPort';
+import type { TokenPort } from './ports/ITokenPort';
 import type { IUserRepository } from '@/domain/repositories/IUserRepository.js';
-import { redisClient, type RedisClient } from '@/infra/redis/redisClient.js';
+import { redisClient, type RedisClient } from '@/infra/redis/redis.client.js';
 import { Roles, User } from '@/domain/entities/User.js';
 import { AppError } from '@/shared/errors/AppError';
 

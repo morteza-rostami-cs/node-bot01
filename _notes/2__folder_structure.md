@@ -121,4 +121,48 @@ tests → structured into unit and integration tests.
   /services                → higher-level orchestrations (LangChain, LLM)
   /domain (optional)       → core entities (e.g., UserEntity)
 
+
+
+
+
+
+
+
+
+src/
+├── services/
+│   ├── ai/                          # Application layer for AI-related services
+│   │   ├── llm/
+│   │   │   ├── ports/               # Abstractions/interfaces
+│   │   │   │   ├── ILLMService.ts
+│   │   │   │   ├── IEmbeddingService.ts
+│   │   │   │   └── IChatService.ts
+│   │   │   ├── adaptors/            # Concrete implementations
+│   │   │   │   ├── OllamaAdaptor.ts
+│   │   │   │   └── OpenAIAdaptor.ts
+│   │   │   └── LLMService.ts        # Orchestrator: uses ports, injects adaptors
+│   │   ├── vector/
+│   │   │   ├── ports/
+│   │   │   │   └── IVectorDB.ts
+│   │   │   ├── adaptors/
+│   │   │   │   ├── ChromaAdaptor.ts
+│   │   │   │   └── PineconeAdaptor.ts
+│   │   │   └── VectorService.ts     # Orchestrator for vector DB ops
+│   │   ├── rag/
+│   │   │   └── RAGService.ts        # Combines LLM + VectorService
+│   │   └── langGraph/
+│   │       └── LangGraphService.ts  # Orchestrates workflows
+│   └── telegram/
+│       ├── ports/
+│       │   └── ITelegramBot.ts
+│       ├── adaptors/
+│       │   └── TelegramBotAdaptor.ts
+│       └── TelegramService.ts       # Orchestrates bot messages, handlers
+├── domain/
+│   └── services/                    # Pure domain/business logic
+│       └── ExampleDomainService.ts
+├── modules/
+│   └── ...                          # Module-specific controllers/services
+
+
  -->

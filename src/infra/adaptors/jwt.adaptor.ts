@@ -1,7 +1,7 @@
 import { config } from '@/config';
 import jwt from 'jsonwebtoken';
 import type { Secret, SignOptions } from 'jsonwebtoken';
-import type { TokenPort, TokenPayload } from '../ports/TokenPort';
+import type { TokenPort, TokenPayload } from '../../application/user/ports/ITokenPort';
 
 export class JwtTokenAdaptor implements TokenPort {
   private readonly accessSecret: Secret;

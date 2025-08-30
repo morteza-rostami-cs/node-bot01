@@ -7,8 +7,8 @@
 
 */
 
-import * as readline from "node:readline/promises";
-import { stdin as input, stdout as output } from "node:process";
+import * as readline from 'node:readline/promises';
+import { stdin as input, stdout as output } from 'node:process';
 
 class InputService {
   protected cli;
@@ -26,17 +26,11 @@ class InputService {
   }
 
   // prompt with options -> wait for input
-  public async choose({
-    prompt,
-    options,
-  }: {
-    prompt: string;
-    options: string[];
-  }): Promise<string> {
+  public async choose({ prompt, options }: { prompt: string; options: string[] }): Promise<string> {
     // loop until ->correct option or end
     while (true) {
       // show prompt and it's options
-      const text = `${prompt}\n [${options.join("/")}]`;
+      const text = `${prompt}\n [${options.join('/')}]`;
 
       const user_input = await this.ask({ prompt: text });
 
@@ -45,7 +39,7 @@ class InputService {
 
       // check if the option they picked exists
       if (options.includes(normalize)) return normalize;
-      else console.log("Invalid choice, please try again.");
+      else console.log('Invalid choice, please try again.');
     }
   }
 
@@ -57,11 +51,11 @@ class InputService {
       const user_input = await this.ask({ prompt: text });
       const normalize = user_input.toLowerCase();
 
-      if (normalize === "y" || normalize === "yes") return true;
-      else if (normalize === "n" || normalize === "no") return false;
+      if (normalize === 'y' || normalize === 'yes') return true;
+      else if (normalize === 'n' || normalize === 'no') return false;
 
       // keep up the loop until user enters the right answer
-      console.log("please answer y/n");
+      console.log('please answer y/n');
     }
   }
 

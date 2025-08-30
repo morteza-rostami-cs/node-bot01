@@ -1,8 +1,9 @@
 import type { Request, Response } from 'express';
-import { AuthService } from './service';
+import type { AuthService } from './user.service';
 import type { User } from '@/domain/entities/User.js';
 import { config } from '@/config';
-import { getTokenFromHeaderOrCookie } from './utils';
+import { getTokenFromHeaderOrCookie } from './user.utils';
+import type { RegisterDto, RegisterOutDto } from '@/application/user/dtos/user.dto.js';
 
 export class AuthController {
   // DPI => authService injection
@@ -10,11 +11,16 @@ export class AuthController {
 
   public async register(req: Request, res: Response): Promise<any> {
     try {
-      const { email, password } = req.body;
+      // input data
+      const { email, password }: RegisterDto = req.body;
+
       // register and return tokens
       const user = await this.authService.register({ email: email, password: password });
 
-      return res.sendSuccess({ data: user, statusCode: 200, message: 'Register success' });
+      // output data
+      const output: RegisterOutDto = { id: user.id, email: user.email };
+
+      return res.sendSuccess({ data: output, statusCode: 200, message: 'Register success' });
     } catch (error: any) {
       return res.sendError({ error: error.message, statusCode: 400 });
     }

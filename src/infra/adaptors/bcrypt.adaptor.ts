@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import type { HashingPort } from '@/modules/user/ports/HashingPort.js';
+import type { HashingPort } from '@/application/user/ports/IHashingPort.js';
 
 export class BcryptHashingAdaptor implements HashingPort {
   private readonly saltRounds: number;

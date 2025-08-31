@@ -25,6 +25,6 @@ export const config = {
     embedModel: process.env.EMBED_MODEL || '',
   },
   telegram: {
-    token: process.env.TELEGRAM_BOT_TOKEN!,
+    token: process.env.TELEGRAM_BOT_TOKEN || '',
   },
 };

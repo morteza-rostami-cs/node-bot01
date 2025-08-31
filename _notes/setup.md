@@ -1,4 +1,5 @@
 <!--
+"cli": "nodemon --watch 'src/**/*.ts' --exec tsx src/practice.ts",
 
 # this type of import => @import
 npm install -D tsconfig-paths
@@ -33,5 +34,8 @@ npx eslint --init
 
 # create multiple files
  touch ./src/modules/user/{controller.ts,service.ts,repository.ts,schema.ts}
+
+
+npx tsx src/practice.ts
 
  -->
